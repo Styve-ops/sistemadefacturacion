@@ -52,7 +52,6 @@ include ('../app/controllers/almacen/listado_de_productos.php');
                             <th><center>Nombre</center></th>
                             <th><center>Descripcion</center></th>
                             <th><center>Stock</center></th>
-                            
                             <th><center>Precio compra</center></th>
                             <th><center>Precio venta</center></th>
                             <th><center>Fecha compra</center></th>
@@ -75,7 +74,22 @@ include ('../app/controllers/almacen/listado_de_productos.php');
                                         </td>
                                         <td><?php echo $productos_dato['nombre']; ?></td>
                                         <td><?php echo $productos_dato['descripcion']; ?></td>
-                                        <td><?php echo $productos_dato['stock']; ?></td>
+                                          <?php
+                                           $stock_actual = $productos_dato['stock'];
+                                           $stock_maximo = $productos_dato['stock_maximo'];
+                                           $stock_minimo = $productos_dato['stock_minimo'];
+                                           if($stock_actual < $stock_minimo){ ?>
+                                                <td style="background-color: #ee868b"><center><?php echo $productos_dato['stock']; ?></center></td>
+                                            <?php
+                                           }else if ($stock_actual > $stock_maximo ) { ?>
+                                              <td style="background-color: #8ac68d"><center><?php echo $productos_dato['stock']; ?></center></td>
+
+                                            <?php
+                                           } else { ?>
+                                                    <td><center><?php echo $productos_dato['stock']; ?></center></td>
+                                            <?php
+                                           }
+                                          ?>
                                         
                                         <td><?php echo $productos_dato['precio_compra']; ?></td>
                                         <td><?php echo $productos_dato['precio_venta']; ?></td>
